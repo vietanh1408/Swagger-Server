@@ -4,4 +4,6 @@ const controller = require('../controllers/user.controller')
 
 route.get('/', controller.index)
 
+route.get('/:id', controller.information)
+
 module.exports = route

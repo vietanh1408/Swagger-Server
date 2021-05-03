@@ -10,10 +10,11 @@ block content
                 th(scope='col') Mật khẩu 
                 th(scope='col') Chỉnh sửa
         tbody
-            each user in users  
+            each user, index in users
                 tr
-                    th(scope='row')= user.id
-                    td= user.name
+                    th(scope='row')= index + 1
+                    td
+                        a(href='/users/' + user.id)= user.name
                     td= user.email
                     td= user.password 
                     td 
