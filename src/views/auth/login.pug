@@ -1,0 +1,13 @@
+extends ../layouts/common.pug
+
+block content 
+    h1 Login 
+    form(action='' method='POST')
+        .form-group.mt-4    
+            label(for='name') Tên đăng nhập 
+            input(id='name' class='form-control' name='name' placeholder='Tên đăng nhập...')
+        .form-group.mt-4 
+            label(for='password') Mật khẩu 
+            input(id='password' class='form-control' name='password' placeholder='Mật khẩu của bạn...')
+        .form-group.mt-4 
+            button(class='btn btn-primary') Đăng nhập 

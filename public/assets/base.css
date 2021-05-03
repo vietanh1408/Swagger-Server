@@ -14,10 +14,9 @@ a {
     color: 000;
 }
 
-/* .product-list {
-    display: flex;
-    flex-wrap: wrap;
-} */
+.btn {
+    margin-right: 1rem;
+}
 
 .product-item {
     width: 100%;
@@ -62,4 +61,14 @@ a {
 
 .product-item-price {
     font-size: 1.2rem;
+}
+.navbar-brand {
+    margin-right: 8.5rem;
+}
+
+/* auth */
+.navbar-auth a {
+    color: #fff;
+    margin: 0 0.5rem;
+    text-transform: uppercase;
 }

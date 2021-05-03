@@ -13590,5 +13590,12 @@
       "NSX": "vans sneaker",
       "createdAt": "2020-11-20T21:40:59+07:00"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Việt Anh",
+      "pasword": "14081999"
+    }
   ]
 }

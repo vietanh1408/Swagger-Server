@@ -1,0 +1,21 @@
+extends ../layouts/common.pug
+block content 
+    h1 Danh sách người dùng 
+    table.table
+        thead
+            tr
+                th(scope='col') #
+                th(scope='col') Tên đăng nhập
+                th(scope='col') Email
+                th(scope='col') Mật khẩu 
+                th(scope='col') Chỉnh sửa
+        tbody
+            each user in users  
+                tr
+                    th(scope='row')= user.id
+                    td= user.name
+                    td= user.email
+                    td= user.password 
+                    td 
+                        button(class='btn btn-success') Chi tiết
+                        button(class='btn btn-danger') Xóa

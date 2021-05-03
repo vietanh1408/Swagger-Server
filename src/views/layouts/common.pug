@@ -11,18 +11,23 @@ html
             nav(class="navbar navbar-expand-lg navbar-dark bg-dark") 
                 div(class="container-fluid") 
                     div(class="d-flex align-items-center justify-content-between w-100")
-                        a(class="navbar-brand" href="/products") VANS-Việt Anh
-                        form(class="d-flex m-0" action="/products/search" method="GET") 
-                            input(
-                                class="form-control me-2" 
-                                type="search"
-                                placeholder="Bạn muốn tìm gì ?" 
-                                aria-label="Search"
-                                name="keyword"
-                                value=q
-                                ) 
-                            button(class="btn btn-outline-success") Search
-        block content
+                        div(class="navbar-right d-flex") 
+                            a(class="navbar-brand" href="/") VANS-Việt Anh
+                            form(class="d-flex m-0" action="/products/search" method="GET") 
+                                input(
+                                    class="form-control me-2" 
+                                    type="search"
+                                    placeholder="Bạn muốn tìm gì ?" 
+                                    aria-label="Search"
+                                    name="keyword"
+                                    value=q
+                                    ) 
+                                button(class="btn btn-outline-success") Search
+                        div(class='navbar-auth d-flex align-items-center p-2')
+                            a(class='navbar-auth-login' href='/login') Login 
+                            a(class='navbar-auth-register' href='/register') Register
+        .container.pt-4
+            block content
         block footer
         script(
             src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js',
