@@ -7,11 +7,11 @@ module.exports.index = (req, res) => {
 }
 
 module.exports.search = (req, res) => {
-    const q = req.query.name
-    const matchUsers = users.filter(user => user.name.toLowerCase().includes(q.toLowerCase().trim()))
+    const name = req.query.name
+    const matchUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase().trim()))
     res.render('users/index', {
         users: matchUsers,
-        q: q.trim()
+        name: name.trim()
     })
 }
 
