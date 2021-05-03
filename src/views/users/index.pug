@@ -1,6 +1,18 @@
 extends ../layouts/common.pug
 block content 
     h1 Danh sách người dùng 
+
+    form(action='/users/search' method='GET')
+        input(
+            name='name' 
+            type="search" 
+            class='form-control' 
+            placeholder="Nhập tên người dùng..." 
+            aria-label="Search"
+            value= q
+            )
+        button(class='btn btn-primary mt-3') Tìm kiếm
+
     table.table
         thead
             tr
