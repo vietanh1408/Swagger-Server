@@ -1,5 +1,5 @@
 const db = require('../db')
-const products = db.products
+const products = db.get('products').value()
 module.exports.index = (req, res) => {
     res.render('products/index', { products })
 }

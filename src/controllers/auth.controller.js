@@ -1,5 +1,4 @@
 const db = require('../db')
-const users = db.users
 
 module.exports.login = (req, res) => {
     res.render('auth/login')
@@ -10,6 +9,6 @@ module.exports.register = (req, res) => {
 }
 
 module.exports.registerCreate = (req, res) => {
-    users.push(req.body)
+    db.get('users').push(req.body).write()
     res.redirect('/users')
 }
