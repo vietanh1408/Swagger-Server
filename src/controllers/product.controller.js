@@ -3,7 +3,31 @@ const products = db.get('products').value()
 const shortid = require('shortid')
 
 module.exports.index = (req, res) => {
-    res.render('products/index', { products })
+
+    const page = req.query.page || 1
+    const limit = 8
+
+    const start = (page - 1) * limit
+    const end = page * limit
+
+    const length = Math.ceil(products.length / 8)
+
+    const x = []
+
+    for (var i = 1; i <= length; i++) {
+        x.push(i)
+    }
+
+    let error = ''
+    if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
+
+    res.render('products/index', {
+        page: page,
+        limit: limit,
+        products: products.slice(start, end),
+        length: x,
+        error: error
+    })
 }
 
 module.exports.search = (req, res) => {
@@ -13,6 +37,10 @@ module.exports.search = (req, res) => {
         products: matchProducts,
         q: q.trim()
     })
+
+    res.locals.product = matchProducts
+    console.log(res.locals.product)
+
 }
 
 module.exports.details = (req, res) => {

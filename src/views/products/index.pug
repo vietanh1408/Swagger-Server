@@ -11,3 +11,19 @@ block content
                             div(class='product-item-content p-3')
                                 a(href='/products/' + product.name)= product.name
                                 span(class='product-item-price')= product.price + ' VNĐ'
+    p= error
+    .d-flex.justify-content-center 
+        nav(aria-label='Page navigation example')
+            ul.pagination
+                
+                li.page-item
+                    a.page-link(href='/products/?page=' + (page-1) , aria-label='Previous')
+                        span(aria-hidden='true') &laquo;
+                each index in length 
+                    li.page-item
+                        a.page-link(href='/products/?page='+ index)= index
+                li.page-item
+                    a.page-link(href='/products/?page=' + page+1 , aria-label='Next')
+                        span(aria-hidden='true') &raquo;
+                
+    

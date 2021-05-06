@@ -22,14 +22,18 @@ html
                   name="keyword"
                   value=q
                   ) 
-                button(class="btn btn-outline-success") Search
+                button(class="btn btn-outline-success") Search 
 
-            div(class='navbar-auth d-flex align-items-center p-2')
-              a(class='navbar-auth-login' href='/login') Login 
-              a(class='navbar-auth-register' href='/register') Register
+            if user 
+              a(style='color: white' class='my-0 mx-3' href='#')= user.name
+            else  
+              div(class='navbar-auth d-flex align-items-center p-2')
+                a(class='navbar-auth-login' href='/login') Login 
+                a(class='navbar-auth-register' href='/register') Register
     .container.pt-4
       block content
     block footer
+      div(style='height: 100px')
     script(
       src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js',
       integrity='sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG', 

@@ -6,13 +6,15 @@ const authRoute = require('./routes/auth.route')
 const userRoute = require('./routes/user.route')
 const authMiddleware = require('./middlewares/auth.middleware')
 var cookieParser = require('cookie-parser')
+require('dotenv').config()
+
 
 app.set('view engine', 'pug')
 app.set('views', './src/views')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser())
+app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.static('public'))
 app.use('/products', productRoute)
 app.use('/users', authMiddleware.authMiddleware, userRoute)
