@@ -2,12 +2,15 @@ extends ../layouts/common.pug
 
 block content 
     h1 Login 
-    form(action='' method='POST')
+
+    form(action='/login' method='POST')
         .form-group.mt-4    
             label(for='name') Tên đăng nhập 
-            input(id='name' class='form-control' name='name' placeholder='Tên đăng nhập...')
+            input(id='name' type='text' class='form-control' name='name' placeholder='Tên đăng nhập...' value= name)
+            span(class='error-message')= errors ? errors.name : ''
         .form-group.mt-4 
             label(for='password') Mật khẩu 
-            input(id='password' class='form-control' name='password' placeholder='Mật khẩu của bạn...')
+            input(id='password' type='password' class='form-control' name='password' placeholder='Mật khẩu của bạn...' value= password)
+            span(class='error-message')= errors ? errors.password : ''
         .form-group.mt-4 
             button(class='btn btn-primary') Đăng nhập 

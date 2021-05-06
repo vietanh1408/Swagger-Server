@@ -13593,22 +13593,16 @@
   ],
   "users": [
     {
-      "name": "vietanh1408",
-      "email": "vietanh1408@gmail.com",
-      "password": "9@U7ukNxMBb9BW7",
-      "id": "xqeU8BKrw"
+      "name": "test01",
+      "email": "test@gmail.com",
+      "password": "e10adc3949ba59abbe56e057f20f883e",
+      "id": "tiJPwmpj6"
     },
     {
-      "name": "Mạnh Tuấn",
-      "email": "manhtuan1234@gmail.com",
-      "password": "adsljgasdkja",
-      "id": "9y0LwdXgq"
-    },
-    {
-      "name": "Trọng Khoa",
-      "email": "trongkhoa12312412@gmail.com",
-      "password": "123435123",
-      "id": "sWoj7uQdv"
+      "name": "test02",
+      "email": "test02@gmail.com",
+      "password": "e10adc3949ba59abbe56e057f20f883e",
+      "id": "514XQCNpY"
     }
   ]
 }

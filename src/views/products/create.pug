@@ -1,0 +1,14 @@
+extends ../layouts/common.pug
+
+block content 
+  h1 Create Form 
+  form(action="/products/create", method="POST")
+    .form-group
+      label(class="form-label" for="product-name") name  
+      input(type="text" class="form-control" id="product-name" name="name")
+    .form-group
+      label(class="form-label" for="product-image") image
+      input(type="file" class="form-control" id="product-image" name="image")
+    .form-group
+      button(class="btn btn-primary my-3") Create a new product
+

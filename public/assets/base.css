@@ -72,3 +72,8 @@ a {
     margin: 0 0.5rem;
     text-transform: uppercase;
 }
+
+/* validate */
+.error-message {
+    color: red;
+}
