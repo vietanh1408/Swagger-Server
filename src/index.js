@@ -16,11 +16,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.static('public'))
-app.use('/products', productRoute)
+app.use('/products', authMiddleware.authMiddleware, productRoute)
 app.use('/users', authMiddleware.authMiddleware, userRoute)
-app.use('', authRoute)
+app.use('', authMiddleware.authMiddleware, authRoute)
 
-app.get('/', (req, res) => {
+app.get('/', authMiddleware.authMiddleware, (req, res) => {
     res.render('index')
 })
 

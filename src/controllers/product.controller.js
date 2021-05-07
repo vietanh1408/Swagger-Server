@@ -55,15 +55,33 @@ module.exports.create = (req, res) => {
     res.render('products/create')
 }
 
+module.exports.validateCreatePro = (req, res, next) => {
+    const file = req.file ? req.file.path.split('\\').slice(1).join('\\') : null
+    req.body.image = file
+    const name = req.body.name
+    const price = req.body.price
+    const image = req.body.image
+    const description = req.body.description
+    const errors = { name: '', price: null, image: '', description: '' }
+    if (!name) errors.name = 'Vui lòng điền tên sản phẩm'
+    if (!price) errors.price = 'Vui lòng điền giá sản phẩm'
+    if (!image) errors.image = 'Vui lòng thêm ảnh của sản phẩm'
+    if (!description) errors.description = 'Vui lòng điền mô tả thông tin sản phẩm'
+    if (!errors.name || !errors.price || !errors.image || !errors.description) {
+        res.render('products/create', {
+            errors: errors,
+            name: name,
+            price: price,
+            image: image,
+            description: description
+        })
+        return
+    }
+
+    next()
+}
+
 module.exports.postCreate = (req, res) => {
-
-    // const imagePath = path.join(__dirname, '/public/images');
-    // // call class Resize
-    // const fileUpload = new Resize(imagePath);
-    // if (!req.file) {
-    //     res.status(401).json({error: 'Please provide an image'});
-    // }
-    // const filename = await fileUpload.save(req.file.buffer);
-
-    // return res.status(200).json({ name: filename });
+    req.body.id = shortid.generate()
+    console.log(req.body)
 }

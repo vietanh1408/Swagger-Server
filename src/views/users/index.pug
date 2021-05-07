@@ -1,34 +1,35 @@
 extends ../layouts/common.pug
 block content 
-    h1 Danh sách người dùng 
+  h1 Danh sách người dùng 
 
-    form(action='/users/search' method='GET')
-        input(
-            name='name' 
-            type="search" 
-            class='form-control' 
-            placeholder="Nhập tên người dùng..." 
-            aria-label="Search"
-            value= name
-            )
-        button(class='btn btn-primary mt-3') Tìm kiếm
+  form(action='/users/search' method='GET')
+    input(
+      name='name' 
+      type="search" 
+      class='form-control' 
+      placeholder="Nhập tên người dùng..." 
+      aria-label="Search"
+      value= name
+      )
+    button(class='btn btn-primary mt-3') Tìm kiếm
 
-    table.table
-        thead
-            tr
-                th(scope='col') #
-                th(scope='col') Tên đăng nhập
-                th(scope='col') Email
-                th(scope='col') Mật khẩu 
-                th(scope='col') Chỉnh sửa
-        tbody
-            each user, index in users
-                tr
-                    th(scope='row')= index + 1
-                    td
-                        a(href='/users/' + user.id)= user.name
-                    td= user.email
-                    td= user.password 
-                    td 
-                        button(class='btn btn-success') Chi tiết
-                        button(class='btn btn-danger') Xóa
+  table.table
+    thead
+      tr
+        th(scope='col') Avatar
+        th(scope='col') Tên đăng nhập
+        th(scope='col') Email
+        th(scope='col') Mật khẩu 
+        th(scope='col') Chỉnh sửa
+    tbody
+      each user, index in users
+        tr
+          th(scope='row')
+            img(src= user.avatar style='width: 2rem')
+          td
+            a(href='/users/' + user.id)= user.name
+          td= user.email
+          td= user.password 
+          td 
+            button(class='btn btn-success') Chi tiết
+            button(class='btn btn-danger') Xóa

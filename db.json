@@ -13593,16 +13593,25 @@
   ],
   "users": [
     {
-      "name": "test01",
-      "email": "test@gmail.com",
-      "password": "e10adc3949ba59abbe56e057f20f883e",
-      "id": "tiJPwmpj6"
+      "name": "vietanh1408",
+      "email": "123@gmail.com",
+      "password": "202cb962ac59075b964b07152d234b70",
+      "avatar": "uploads\\096aefa2642d9bd65d04942ebd0241fa",
+      "id": "NDfvDZfc8"
+    },
+    {
+      "name": "123",
+      "email": "valai1408@gmail.com",
+      "password": "244ffbcf4483ae7fc354e3f00db6b454",
+      "avatar": "uploads\\64f577634e0b7a67b0b3a0fee693c7a8",
+      "id": "AJh79nkow"
     },
     {
       "name": "test02",
       "email": "test02@gmail.com",
       "password": "e10adc3949ba59abbe56e057f20f883e",
-      "id": "514XQCNpY"
+      "avatar": "uploads\\97f04c33239bcbb9e2209179d983bac4",
+      "id": "AJwWFTyEi"
     }
   ]
 }

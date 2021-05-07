@@ -22,14 +22,14 @@ html
                   name="keyword"
                   value=q
                   ) 
-                button(class="btn btn-outline-success") Search 
+                button(class="btn btn-outline-success") Search
 
             if user 
               a(style='color: white' class='my-0 mx-3' href='#')= user.name
             else  
               div(class='navbar-auth d-flex align-items-center p-2')
-                a(class='navbar-auth-login' href='/login') Login 
-                a(class='navbar-auth-register' href='/register') Register
+                a(class='navbar-auth-login' href='/login') Đăng nhập 
+                a(class='navbar-auth-register' href='/register') Đăng ký
     .container.pt-4
       block content
     block footer

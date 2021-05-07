@@ -1,16 +1,19 @@
 extends ../layouts/common.pug
 
 block content 
-    h1 Register 
-    form(action='/register', method="POST")
-        .form-group.mt-4    
-            label(for='name') Tên đăng nhập 
-            input(id='name' class='form-control' name='name' placeholder='Tên đăng nhập...' type='text')
-        .form-group.mt-4 
-            label(for='email') Email
-            input(id='email' class='form-control' name='email' placeholder='Email của bạn...' type='email')
-        .form-group.mt-4 
-            label(for='password') Mật khẩu 
-            input(id='password' class='form-control' name='password' placeholder='Mật khẩu của bạn...' type='password')
+  h1 Register 
+  form(action='/register', method="POST", enctype="multipart/form-data")
+    .form-group.mt-4    
+      label(for='name') Tên đăng nhập 
+      input(id='name' class='form-control' name='name' placeholder='Tên đăng nhập...' type='text')
+    .form-group.mt-4 
+      label(for='email') Email
+      input(id='email' class='form-control' name='email' placeholder='Email của bạn...' type='email')
+    .form-group.mt-4 
+      label(for='password') Mật khẩu 
+      input(id='password' class='form-control' name='password' placeholder='Mật khẩu của bạn...' type='password')
+    .form-group.mt-4
+      label(for='avatar') Ảnh đại diện
+      input(id='avatar' class='form-control' name='avatar' type='file')
 
-        button(class='btn btn-primary mt-4') Đăng ký 
+    button(class='btn btn-primary mt-4') Đăng ký 

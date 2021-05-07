@@ -1,14 +1,24 @@
 extends ../layouts/common.pug
 
 block content 
-  h1 Create Form 
-  form(action="/products/create", method="POST")
-    .form-group
-      label(class="form-label" for="product-name") name  
-      input(type="text" class="form-control" id="product-name" name="name")
-    .form-group
-      label(class="form-label" for="product-image") image
-      input(type="file" class="form-control" id="product-image" name="image")
-    .form-group
-      button(class="btn btn-primary my-3") Create a new product
+  h1 Tạo mới sản phẩm 
+  form(action="/products/create", method="POST" enctype="multipart/form-data")
+    .form-group.mt-4
+      label(class="form-label" for="product-name") Tên sản phẩm  
+      input(type="text" class="form-control" id="product-name" value= name name="name")
+      span(class='error-message')= errors && errors.name
+    .form-group.mt-4
+      label(class="form-label" for="product-price") Giá  
+      input(type="number" class="form-control" id="product-price" value= price name="price")
+      span(class='error-message')= errors && errors.price
+    .form-group.mt-4
+      label(class="form-label" for="product-image") Ảnh
+      input(type="file" class="form-control" id="product-image" value= image name="image")
+      span(class='error-message')= errors && errors.image
+    .form-group.mt-4
+      label(class='form-label' for='product-description') Mô tả
+      textarea(class='form-control' id='product-description' style='height: 100px' name='description' placeholder='Nhập mô tả sản phẩm...')= description
+      span(class='error-message')= errors && errors.description
+    .form-group.mt-4
+      button(class="btn btn-primary my-3") Tạo mới sản phẩm
 

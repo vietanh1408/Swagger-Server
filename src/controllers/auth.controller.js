@@ -12,10 +12,13 @@ module.exports.register = (req, res) => {
 }
 
 module.exports.registerCreate = (req, res) => {
+
+    const file = req.file.path.split('\\').slice(1).join('\\')
+    req.body.avatar = file
     req.body.id = shortid.generate()
     req.body.password = md5(req.body.password)
     db.get('users').push(req.body).write()
-    res.cookie('userId', req.body.id)
+    res.cookie('userId', req.body.id, { signed: true })
     res.redirect('/users')
 }
 
