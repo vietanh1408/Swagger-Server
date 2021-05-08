@@ -17,6 +17,7 @@ module.exports.index = (req, res) => {
     for (var i = 1; i <= length; i++) {
         x.push(i)
     }
+
     let error = ''
     if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
 
@@ -38,7 +39,7 @@ module.exports.search = (req, res) => {
     })
 
     res.locals.product = matchProducts
-    // console.log(res.locals.product)
+    console.log(res.locals.product)
 
 }
 
@@ -66,7 +67,7 @@ module.exports.validateCreatePro = (req, res, next) => {
     if (!price) errors.price = 'Vui lòng điền giá sản phẩm'
     if (!image) errors.image = 'Vui lòng thêm ảnh của sản phẩm'
     if (!description) errors.description = 'Vui lòng điền mô tả thông tin sản phẩm'
-    if (errors.name || errors.price || errors.image || errors.description) {
+    if (!errors.name || !errors.price || !errors.image || !errors.description) {
         res.render('products/create', {
             errors: errors,
             name: name,
@@ -74,21 +75,13 @@ module.exports.validateCreatePro = (req, res, next) => {
             image: image,
             description: description
         })
-
         return
     }
-    next()
 
+    next()
 }
 
-module.exports.postCreate = (req, res, next) => {
+module.exports.postCreate = (req, res) => {
     req.body.id = shortid.generate()
-
-    req.body.poster = [{ url: '' }, { url: '' }]
-    req.body.poster[0].url = req.body.image
-
-    // console.log(req.body.poster[0].url)
-
-    db.get('products').unshift(req.body).write()
-    res.redirect('/products')
+    console.log(req.body)
 }

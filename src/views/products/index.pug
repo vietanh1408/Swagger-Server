@@ -7,10 +7,7 @@ block content
         div(class='col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12')
           li(class='product-item card')
             div(class='product-item-image')
-              if !product.poster[0].url.includes('uploads')
-                img(src= product.poster[0].url, alt= product.name)
-              else
-                img(src='http://localhost:1408/'+ product.poster[0].url, alt= product.name)
+              img(src=product.poster[0].url alt= product.name)
             div(class='product-item-content p-3')
               a(href='/products/' + product.name)= product.name
               span(class='product-item-price')= product.price + ' VNĐ'

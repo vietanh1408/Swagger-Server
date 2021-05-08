@@ -24,6 +24,6 @@ app.get('/', authMiddleware.authMiddleware, (req, res) => {
     res.render('index')
 })
 
-app.listen(1408, (req, res) => {
-    console.log('Server start at http://localhost:1408')
+app.listen(9000, (req, res) => {
+    console.log('Server start at http://localhost:9000')
 })
