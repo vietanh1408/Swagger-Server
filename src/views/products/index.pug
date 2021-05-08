@@ -11,6 +11,9 @@ block content
             div(class='product-item-content p-3')
               a(href='/products/' + product.name)= product.name
               span(class='product-item-price')= product.price + ' VNĐ'
+              br
+              a(href='/')
+                button(class='btn btn-primary mt-2') Add to Cart
   p= error
   .d-flex.justify-content-center 
     nav(aria-label='Page navigation example')
