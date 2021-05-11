@@ -12,21 +12,29 @@ block content
               a(href='/products/' + product.name)= product.name
               span(class='product-item-price')= product.price + ' VNĐ'
               br
-              a(href='/')
-                button(class='btn btn-primary mt-2') Add to Cart
+              a(href='/cart/add/' + product.name)
+                button(class='btn btn-primary mt-2') Thêm vào giỏ hàng
   p= error
   .d-flex.justify-content-center 
     nav(aria-label='Page navigation example')
       ul.pagination
 
-        li.page-item
-          a.page-link(href='/products/?page=' + (page-1) , aria-label='Previous')
-            span(aria-hidden='true') &laquo;
-        each index in length 
+        if prevPage >= 1
           li.page-item
-            a.page-link(href='/products/?page='+ index)= index
-        li.page-item
-          a.page-link(href='/products/?page=' + (+page+1) , aria-label='Next')
-            span(aria-hidden='true') &raquo;
+            a.page-link(href='/products/?page=' + prevPage, aria-label='Previous')
+              span(aria-hidden='true') &laquo;
+          li.page-item
+            a.page-link(href='/products/?page='+ prevPage)= prevPage
+
+        li.page-item.active
+          a.page-link(href='/products/?page='+ page)= page
+
+        if page<length
+          li.page-item
+            a.page-link(href='/products/?page='+ nextPage)= nextPage
+          li.page-item
+            a.page-link(href='/products/?page=' + nextPage , aria-label='Next')
+              span(aria-hidden='true') &raquo;
+
 
 

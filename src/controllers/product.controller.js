@@ -12,20 +12,16 @@ module.exports.index = (req, res) => {
 
     const length = Math.ceil(products.length / 8)
 
-    const x = []
-
-    for (var i = 1; i <= length; i++) {
-        x.push(i)
-    }
-
     let error = ''
     if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
 
     res.render('products/index', {
         page: page,
+        prevPage: +page - 1,
+        nextPage: +page + 1,
         limit: limit,
         products: products.slice(start, end),
-        length: x,
+        length: length,
         error: error
     })
 }
