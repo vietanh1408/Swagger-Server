@@ -1,8 +1,9 @@
 const db = require('../db')
-const users = db.get('users').value()
+// const users = db.get('users').value()
+const User = require('../models/user.model')
 
-
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+    const users = await User.find()
     res.render('users/index', { users })
 }
 

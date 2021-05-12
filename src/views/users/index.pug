@@ -19,7 +19,7 @@ block content
         th(scope='col') Avatar
         th(scope='col') Tên đăng nhập
         th(scope='col') Email
-        th(scope='col') Mật khẩu 
+        th(scope='col') Điện thoại
         th(scope='col') Chỉnh sửa
     tbody
       each user, index in users
@@ -29,7 +29,7 @@ block content
           td
             a(href='/users/' + user.id)= user.name
           td= user.email
-          td= user.password 
+          td= user.phone
           td 
             button(class='btn btn-success') Chi tiết
             button(class='btn btn-danger') Xóa

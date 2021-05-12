@@ -5,6 +5,9 @@ const productRoute = require('./routes/product.route')
 const authRoute = require('./routes/auth.route')
 const userRoute = require('./routes/user.route')
 const cartRoute = require('./routes/cart.route')
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://localhost/express-demo')
 
 const authMiddleware = require('./middlewares/auth.middleware')
 const sessionMiddleware = require('./middlewares/session.middleware')

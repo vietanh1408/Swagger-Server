@@ -1,15 +1,14 @@
-const db = require('../db')
-const products = db.get('products').value()
-const shortid = require('shortid')
+const Product = require('../models/product.model')
 
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+
+    const products = await Product.find()
 
     const page = req.query.page || 1
     const limit = 8
 
     const start = (page - 1) * limit
     const end = page * limit
-
     const length = Math.ceil(products.length / 8)
 
     let error = ''
@@ -35,8 +34,6 @@ module.exports.search = (req, res) => {
     })
 
     res.locals.product = matchProducts
-    console.log(res.locals.product)
-
 }
 
 module.exports.details = (req, res) => {
