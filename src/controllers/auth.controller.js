@@ -2,6 +2,7 @@ const db = require('../db')
 const shortid = require('shortid')
 const users = db.get('users').value()
 const md5 = require('md5')
+const User = require('../models/user.model')
 
 module.exports.login = (req, res) => {
     res.render('auth/login')
@@ -11,15 +12,23 @@ module.exports.register = (req, res) => {
     res.render('auth/register')
 }
 
-module.exports.registerCreate = (req, res) => {
+module.exports.registerCreate = async (req, res) => {
 
     const file = req.file.path.split('\\').slice(1).join('\\')
     req.body.avatar = file
-    req.body.id = shortid.generate()
+    // req.body.id = shortid.generate()
     req.body.password = md5(req.body.password)
-    db.get('users').push(req.body).write()
-    res.cookie('userId', req.body.id, { signed: true })
-    res.redirect('/users')
+    await User.insert({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        avatar: req.body.avatar,
+    })
+    // const user = await User.find({ name: req.body.name })
+    // console.log(req.body)
+    // db.get('users').push(req.body).write()
+    // res.cookie('userId', req.body.id, { signed: true })
+    // res.redirect('/users')
 }
 
 module.exports.validate = (req, res, next) => {

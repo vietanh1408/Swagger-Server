@@ -42,7 +42,11 @@ a {
 }
 
 .product-item-content {
+    min-height: 200px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-item-content a {

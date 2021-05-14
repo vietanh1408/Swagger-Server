@@ -16,8 +16,8 @@ module.exports.search = (req, res) => {
     })
 }
 
-module.exports.information = (req, res) => {
+module.exports.information = async (req, res) => {
     const id = req.params.id
-    const user = users.find(user => user.id === id)
+    const user = await User.find({ id: id })
     res.render('users/information', { user })
 }
