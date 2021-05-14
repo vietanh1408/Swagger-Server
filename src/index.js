@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_ONLINE,
+        await mongoose.connect(process.env.MONGO_URI,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -16,8 +16,8 @@ const connectDB = async () => {
         console.log(err)
     }
 }
-
 connectDB()
+const port = process.env.PORT || 9000
 
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser')
@@ -56,6 +56,6 @@ app.get('/', authMiddleware.authMiddleware, (req, res) => {
     res.render('index')
 })
 
-app.listen(9000, () => {
+app.listen(port, () => {
     console.log('Server start at http://localhost:9000')
 })
