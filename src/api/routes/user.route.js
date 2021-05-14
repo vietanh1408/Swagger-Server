@@ -6,4 +6,6 @@ var upload = multer({ dest: 'public/uploads/' })
 
 route.get('/', controller.index)
 
+route.get('/:id', controller.information)
+
 module.exports = route

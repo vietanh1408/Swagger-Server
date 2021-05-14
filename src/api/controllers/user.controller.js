@@ -8,7 +8,6 @@ module.exports.index = async (req, res) => {
 
 module.exports.information = async (req, res) => {
     const id = new ObjectId(req.params.id)
-
     const user = await User.findOne({ _id: id })
     res.json(user)
 }
