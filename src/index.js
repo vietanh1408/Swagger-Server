@@ -47,7 +47,7 @@ app.use('/api/products', apiProductRoute)
 app.use('/api/users', apiUserRoute)
 app.use('/api/', apiAuthRoute)
 
-app.use('/products'/* , authMiddleware.authMiddleware */, productRoute)
+app.use('/products', authMiddleware.authMiddleware, productRoute)
 app.use('/users', authMiddleware.authMiddleware, userRoute)
 app.use('/cart', authMiddleware.authMiddleware, cartRoute)
 app.use('', authRoute)
