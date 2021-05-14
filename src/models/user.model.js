@@ -27,8 +27,9 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-    },
-    versionKey: false
+    }
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
 })
 
 const User = mongoose.model('User', userSchema, 'users')

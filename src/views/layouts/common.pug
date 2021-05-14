@@ -29,7 +29,9 @@ html
                 i.fas.fa-shopping-cart
                 span.badge.bg-danger.rounded-circle 4
               if user 
-                a(style='color: white' class='my-0 mx-3' href='#')= user.name
+                a(href='#' style='color: white' class='my-0 mx-3' )= user.name
+                a(href='/logout' style='color: white') 
+                  i.fas.fa-sign-out-alt
               else  
                 div(class='navbar-auth d-flex align-items-center p-2')
                   a(class='navbar-auth-login' href='/login') Đăng nhập 

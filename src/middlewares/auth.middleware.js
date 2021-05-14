@@ -1,12 +1,13 @@
 const User = require('../models/user.model')
+const ObjectId = require('mongodb').ObjectID;
 
-module.exports.authMiddleware = (req, res, next) => {
+module.exports.authMiddleware = async (req, res, next) => {
 
     if (!req.signedCookies.userId) {
         res.redirect('/login')
-        return
     }
-    const user = User.findOne({ _id: req.signedCookies.userId })
+    const id = new ObjectId(req.signedCookies.userId)
+    const user = await User.findOne({ _id: id })
     if (!user) {
         res.redirect('/login')
         return

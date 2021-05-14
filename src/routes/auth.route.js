@@ -14,4 +14,6 @@ route.get('/register', controller.register)
 
 route.post('/register', upload.single('avatar'), validateRegister, controller.registerCreate)
 
+route.get('/logout', controller.logout)
+
 module.exports = route

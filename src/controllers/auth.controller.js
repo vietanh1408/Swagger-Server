@@ -8,18 +8,18 @@ module.exports.register = (req, res) => {
 }
 
 module.exports.registerCreate = async (req, res) => {
+    req.body.password = md5(req.body.password)
+    req.body.confirmPassword = md5(req.body.confirmPassword)
     const file = req.file ? req.file.path.split('\\').slice(1).join('\\') : ''
     req.body.avatar = file
 
     const user = new User(req.body)
 
     try {
-        User.insertMany(user)
-
+        await User.insertMany(user)
         const currentUser = await User.findOne({ _id: user._id })
-        res.cookie('userId', currentUser.id, { signed: true })
+        res.cookie('userId', currentUser._id, { signed: true })
         res.redirect('/users')
-
     } catch (err) {
         console.log(err)
     }
@@ -59,4 +59,12 @@ module.exports.loginPost = async (req, res) => {
     }
     res.cookie('userId', user.id, { signed: true })
     res.redirect('/')
+}
+
+// LOGOUT
+module.exports.logout = async (req, res, next) => {
+    if (req.signedCookies.userId) {
+        await res.clearCookie('userId')
+        res.redirect('/login')
+    }
 }
