@@ -6,6 +6,8 @@ route.get('/', controller.index)
 
 route.get('/search', controller.search)
 
+route.delete('/:id', controller.delete)
+
 route.get('/:id', controller.information)
 
 

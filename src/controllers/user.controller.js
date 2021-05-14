@@ -17,6 +17,17 @@ module.exports.search = async (req, res) => {
     })
 }
 
+
+module.exports.delete = async (req, res) => {
+    const id = new ObjectId(req.params.id)
+    try {
+        await User.deleteOne({ _id: id })
+        res.redirect('/users')
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 module.exports.information = async (req, res) => {
     const id = new ObjectId(req.params.id)
     const user = await User.findOne({ _id: id })

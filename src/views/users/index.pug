@@ -28,9 +28,11 @@ block content
             if user.avatar
               img(src= user.avatar style='width: 2rem')
           td
-            a(href='/users/' + user.id)= user.name
+            a(href='/users/' + user._id)= user.name
           td= user.email
           td= user.phone
           td 
-            button(class='btn btn-success') Chi tiết
-            button(class='btn btn-danger') Xóa
+            a(href='/users/' + user._id)
+              button(class='btn btn-success') Chi tiết
+            a(href='/users/delete/' + user._id) 
+              button(class='btn btn-danger') Xóa
