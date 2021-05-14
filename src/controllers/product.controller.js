@@ -1,41 +1,44 @@
 const Product = require('../models/product.model')
 
-module.exports.index = async (req, res) => {
+module.exports.index = async (req, res, next) => {
+    const keyword = req.query.keyword
+    if (!keyword) {
+        const page = req.query.page || 1
+        const count = await Product.countDocuments()
+        const limit = 8
+        const start = (page - 1) * limit
+        const length = Math.ceil(count / limit)
+        const products = await Product.find().skip(start).limit(limit)
 
-    const products = await Product.find()
+        let error = ''
+        if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
 
-    const page = req.query.page || 1
-    const limit = 8
+        res.render('products/index', {
+            q: keyword ? keyword : '',
+            page: page,
+            prevPage: +page - 1,
+            nextPage: +page + 1,
+            limit: limit,
+            products: products,
+            length: length,
+            error: error
+        })
+    }
+    else next()
 
-    const start = (page - 1) * limit
-    const end = page * limit
-    const length = Math.ceil(products.length / 8)
-
-    let error = ''
-    if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
-
-    res.render('products/index', {
-        page: page,
-        prevPage: +page - 1,
-        nextPage: +page + 1,
-        limit: limit,
-        products: products.slice(start, end),
-        length: length,
-        error: error
-    })
 }
 
 module.exports.search = async (req, res) => {
-    const q = req.query.keyword
-    const regex = new RegExp(q.toLowerCase().trim(), 'g')
-    const matchProducts = await Product.find({ name: regex })
-
+    const q = req.query.keyword.toLowerCase().trim()
     const page = req.query.page || 1
-    const limit = 8
+    const keyword = new RegExp(q, 'g')
+    const count = await Product.find({ name: keyword }).countDocuments()
 
+    const limit = 8
     const start = (page - 1) * limit
-    const end = page * limit
-    const length = Math.ceil(matchProducts.length / 8)
+    const length = Math.ceil(count / limit)
+
+    const matchProducts = await Product.find({ name: keyword }).skip(start).limit(limit)
 
     let error = ''
     if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
@@ -45,10 +48,10 @@ module.exports.search = async (req, res) => {
         prevPage: +page - 1,
         nextPage: +page + 1,
         limit: limit,
-        products: matchProducts.slice(start, end),
+        products: matchProducts,
         length: length,
         error: error,
-        q: q.trim()
+        q: q ? q : ""
     })
 
     res.locals.product = matchProducts

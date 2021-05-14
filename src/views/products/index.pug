@@ -21,19 +21,19 @@ block content
 
         if prevPage >= 1
           li.page-item
-            a.page-link(href='/products/?page=' + prevPage, aria-label='Previous')
+            a.page-link(href='/products/?page=' + prevPage + '&keyword=' + q, aria-label='Previous')
               span(aria-hidden='true') &laquo;
           li.page-item
-            a.page-link(href='/products/?page='+ prevPage)= prevPage
+            a.page-link(href='/products/?page='+ prevPage + '&keyword=' + q)= prevPage
 
         li.page-item.active
-          a.page-link(href='/products/?page='+ page)= page
+          a.page-link(href='/products/?page='+ page + '&keyword=' + q)= page
 
         if page<length
           li.page-item
-            a.page-link(href='/products/?page='+ nextPage)= nextPage
+            a.page-link(href='/products/?page='+ nextPage + '&keyword=' + q)= nextPage
           li.page-item
-            a.page-link(href='/products/?page=' + nextPage , aria-label='Next')
+            a.page-link(href='/products/?page=' + nextPage + '&keyword=' + q , aria-label='Next')
               span(aria-hidden='true') &raquo;
 
 

@@ -4,9 +4,7 @@ const controller = require('../controllers/product.controller')
 var multer = require('multer')
 var upload = multer({ dest: 'public/uploads/' })
 
-route.get('/', controller.index)
-
-route.get('/search', controller.search)
+route.get('/', controller.index, controller.search)
 
 route.get('/create', controller.create)
 
