@@ -25,7 +25,8 @@ block content
       each user, index in users
         tr
           th(scope='row')
-            img(src= user.avatar style='width: 2rem')
+            if user.avatar
+              img(src= user.avatar style='width: 2rem')
           td
             a(href='/users/' + user.id)= user.name
           td= user.email

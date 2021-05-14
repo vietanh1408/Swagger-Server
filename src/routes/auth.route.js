@@ -1,15 +1,17 @@
 const express = require('express')
 const route = express.Router()
 const controller = require('../controllers/auth.controller')
-var multer = require('multer')
-var upload = multer({ dest: 'public/uploads/' })
+const multer = require('multer')
+const upload = multer({ dest: 'public/uploads/' })
+const validateRegister = require('../validations/validate.register')
+const validateLogin = require('../validations/validate.login')
 
 route.get('/login', controller.login)
 
-route.post('/login', controller.validate, controller.loginPost)
+route.post('/login', validateLogin, controller.loginPost)
 
 route.get('/register', controller.register)
 
-route.post('/register', upload.single('avatar'), controller.registerCreate)
+route.post('/register', upload.single('avatar'), validateRegister, controller.registerCreate)
 
 module.exports = route

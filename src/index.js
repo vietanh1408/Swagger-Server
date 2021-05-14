@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require("body-parser");
@@ -7,13 +8,12 @@ const userRoute = require('./routes/user.route')
 const cartRoute = require('./routes/cart.route')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/express-demo')
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const authMiddleware = require('./middlewares/auth.middleware')
 const sessionMiddleware = require('./middlewares/session.middleware')
 
 const cookieParser = require('cookie-parser')
-require('dotenv').config()
 
 app.set('view engine', 'pug')
 app.set('views', './src/views')

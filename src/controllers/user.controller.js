@@ -1,5 +1,4 @@
-const db = require('../db')
-// const users = db.get('users').value()
+
 const User = require('../models/user.model')
 
 module.exports.index = async (req, res) => {
@@ -7,12 +6,13 @@ module.exports.index = async (req, res) => {
     res.render('users/index', { users })
 }
 
-module.exports.search = (req, res) => {
-    const name = req.query.name
-    const matchUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase().trim()))
+module.exports.search = async (req, res) => {
+    const name = req.query.name.toLowerCase().trim()
+    const regex = new RegExp(name, 'g')
+    const matchUsers = await User.find({ name: regex })
     res.render('users/index', {
         users: matchUsers,
-        name: name.trim()
+        name: name
     })
 }
 

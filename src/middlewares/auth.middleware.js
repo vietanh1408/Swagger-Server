@@ -1,5 +1,4 @@
-const db = require('../db')
-const users = db.get('users').value()
+const User = require('../models/user.model')
 
 module.exports.authMiddleware = (req, res, next) => {
 
@@ -7,7 +6,7 @@ module.exports.authMiddleware = (req, res, next) => {
         res.redirect('/login')
         return
     }
-    const user = users.find(user => user.id === req.signedCookies.userId)
+    const user = User.findOne({ _id: req.signedCookies.userId })
     if (!user) {
         res.redirect('/login')
         return

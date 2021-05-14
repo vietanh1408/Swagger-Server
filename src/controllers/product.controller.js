@@ -25,20 +25,38 @@ module.exports.index = async (req, res) => {
     })
 }
 
-module.exports.search = (req, res) => {
+module.exports.search = async (req, res) => {
     const q = req.query.keyword
-    const matchProducts = products.filter(product => product.name.toLowerCase().includes(q.toLowerCase().trim()))
+    const regex = new RegExp(q.toLowerCase().trim(), 'g')
+    const matchProducts = await Product.find({ name: regex })
+
+    const page = req.query.page || 1
+    const limit = 8
+
+    const start = (page - 1) * limit
+    const end = page * limit
+    const length = Math.ceil(matchProducts.length / 8)
+
+    let error = ''
+    if (page > length) error = 'Error 404 - Không tìm thấy trang web, Vui lòng thử lại'
+
     res.render('products/index', {
-        products: matchProducts,
+        page: page,
+        prevPage: +page - 1,
+        nextPage: +page + 1,
+        limit: limit,
+        products: matchProducts.slice(start, end),
+        length: length,
+        error: error,
         q: q.trim()
     })
 
     res.locals.product = matchProducts
 }
 
-module.exports.details = (req, res) => {
+module.exports.details = async (req, res) => {
     const id = req.params.id
-    const product = products.find(product => product.name === id)
+    const product = await Product.findOne({ name: id })
     res.render('products/details', {
         product: product
     })
