@@ -2,7 +2,22 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_ONLINE,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true,
+                useFindAndModify: false
+            })
+        console.log('mongoDB connected')
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+connectDB()
 
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser')
@@ -32,7 +47,7 @@ app.use('/api/products', apiProductRoute)
 app.use('/api/users', apiUserRoute)
 app.use('/api/', apiAuthRoute)
 
-app.use('/products', authMiddleware.authMiddleware, productRoute)
+app.use('/products'/* , authMiddleware.authMiddleware */, productRoute)
 app.use('/users', authMiddleware.authMiddleware, userRoute)
 app.use('/cart', authMiddleware.authMiddleware, cartRoute)
 app.use('', authRoute)
