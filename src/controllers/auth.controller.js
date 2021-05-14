@@ -13,12 +13,9 @@ module.exports.registerCreate = async (req, res) => {
     const file = req.file ? req.file.path.split('\\').slice(1).join('\\') : ''
     req.body.avatar = file
 
-    const user = new User(req.body)
-
     try {
-        await User.insertMany(user)
-        const currentUser = await User.findOne({ _id: user._id })
-        res.cookie('userId', currentUser._id, { signed: true })
+        const user = await User.create(req.body)
+        res.cookie('userId', user._id, { signed: true })
         res.redirect('/users')
     } catch (err) {
         console.log(err)

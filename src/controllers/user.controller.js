@@ -1,5 +1,6 @@
 
 const User = require('../models/user.model')
+const ObjectId = require('mongodb').ObjectID
 
 module.exports.index = async (req, res) => {
     const users = await User.find()
@@ -17,7 +18,7 @@ module.exports.search = async (req, res) => {
 }
 
 module.exports.information = async (req, res) => {
-    const id = req.params.id
-    const user = await User.find({ id: id })
+    const id = new ObjectId(req.params.id)
+    const user = await User.findOne({ _id: id })
     res.render('users/information', { user })
 }

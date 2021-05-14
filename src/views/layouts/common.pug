@@ -29,7 +29,7 @@ html
                 i.fas.fa-shopping-cart
                 span.badge.bg-danger.rounded-circle 4
               if user 
-                a(href='#' style='color: white' class='my-0 mx-3' )= user.name
+                a(href='/users/'+user._id style='color: white' class='my-0 mx-3' )= user.name
                 a(href='/logout' style='color: white') 
                   i.fas.fa-sign-out-alt
               else  

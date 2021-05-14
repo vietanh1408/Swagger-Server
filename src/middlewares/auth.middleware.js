@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID
 
 module.exports.authMiddleware = async (req, res, next) => {
 

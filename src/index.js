@@ -14,6 +14,7 @@ const cartRoute = require('./routes/cart.route')
 
 const apiProductRoute = require('./api/routes/product.route')
 const apiUserRoute = require('./api/routes/user.route')
+const apiAuthRoute = require('./api/routes/auth.route')
 
 const authMiddleware = require('./middlewares/auth.middleware')
 const sessionMiddleware = require('./middlewares/session.middleware')
@@ -29,6 +30,7 @@ app.use(sessionMiddleware)
 
 app.use('/api/products', apiProductRoute)
 app.use('/api/users', apiUserRoute)
+app.use('/api/', apiAuthRoute)
 
 app.use('/products', authMiddleware.authMiddleware, productRoute)
 app.use('/users', authMiddleware.authMiddleware, userRoute)
