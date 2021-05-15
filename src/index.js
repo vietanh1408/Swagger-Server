@@ -17,7 +17,7 @@ const connectDB = async () => {
     }
 }
 connectDB()
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 6000
 
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser')
@@ -37,6 +37,28 @@ const sessionMiddleware = require('./middlewares/session.middleware')
 app.set('view engine', 'pug')
 app.set('views', './src/views')
 
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
+
+app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser(process.env.COOKIE_SECRET))
@@ -56,6 +78,8 @@ app.get('/', authMiddleware.authMiddleware, (req, res) => {
     res.render('index')
 })
 
+
+
 app.listen(port, () => {
-    console.log('Server start at http://localhost:9000')
+    console.log(`Server start at http://localhost:${port}`)
 })
