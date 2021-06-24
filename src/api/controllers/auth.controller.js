@@ -28,7 +28,15 @@ module.exports.register = async (req, res) => {
 
   try {
     const newUser = await user.save();
-    res.send({ user: newUser._id });
+    const currentUser = {
+      name: newUser.name,
+      email: newUser.email,
+      phone: newUser.phone,
+      avatar: newUser.avatar,
+    };
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+
+    res.json({ user: currentUser, token });
   } catch (err) {
     res.status(400).send({
       error: "Tạo tài khoản không thành công",
