@@ -54,7 +54,6 @@ module.exports.login = async (req, res, next) => {
 
   // check user name valid in database
   const user = await User.findOne({ email: req.body.email });
-  console.log("user..............", user);
   if (!user) {
     return res.status(400).send({
       error: "Email không tồn tại",
@@ -63,8 +62,6 @@ module.exports.login = async (req, res, next) => {
 
   // check password valid
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-
-  console.log("validPassword..........", validPassword);
   if (!validPassword) {
     return res.status(400).send({
       error: "mật khẩu không đúng",
