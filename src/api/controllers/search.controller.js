@@ -4,17 +4,23 @@ module.exports.search = async (req, res) => {
   const pageIndex = parseInt(req.query.pageIndex) || 1;
   const pageSize = parseInt(req.query.pageSize) || 12;
   const keyword = req.query.keyword || "";
+  const sort = req.query.sort;
   const skip = (pageIndex - 1) * pageSize;
 
   const name = new RegExp(".*" + keyword.toLowerCase().trim() + ".*");
   const total = await Product.find({ name: name }).count();
   const totalPage = Math.ceil(total / pageSize);
 
-  console.log("pageSize....", pageSize, "PageIndex.....", pageIndex);
+  let sortBy;
+  if (sort == 200) sortBy = { createdAt: 1 };
+  if (sort == 300) sortBy = { name: 1 };
+  if (sort == 400) sortBy = { name: -1 };
+  if (sort == 500) sortBy = { price: 1 };
+  if (sort == 600) sortBy = { price: -1 };
 
   const matchProducts = await Product.find({ name: name })
     .skip(skip)
-    .limit(pageSize);
-
+    .limit(pageSize)
+    .sort(sortBy);
   res.json({ matchProducts, total, totalPage });
 };
