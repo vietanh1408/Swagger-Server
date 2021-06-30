@@ -4,7 +4,7 @@ module.exports.search = async (req, res) => {
   const pageIndex = parseInt(req.query.pageIndex) || 1;
   const pageSize = parseInt(req.query.pageSize) || 12;
   const keyword = req.query.keyword || "";
-  const sort = req.query.sort;
+  const sort = req.query.sortBy;
   const skip = (pageIndex - 1) * pageSize;
 
   const name = new RegExp(".*" + keyword.toLowerCase().trim() + ".*");
