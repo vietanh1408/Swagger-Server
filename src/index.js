@@ -32,6 +32,7 @@ const apiProductRoute = require("./api/routes/product.route");
 const apiUserRoute = require("./api/routes/user.route");
 const apiAuthRoute = require("./api/routes/auth.route");
 const apiSearchRoute = require("./api/routes/search.route");
+const apiOrderRoute = require("./api/routes/order.route");
 
 const authMiddleware = require("./middlewares/auth.middleware");
 const sessionMiddleware = require("./middlewares/session.middleware");
@@ -72,11 +73,12 @@ app.use("/api/products", apiProductRoute);
 app.use("/api/users", apiUserRoute);
 app.use("/api/", apiAuthRoute);
 app.use("/api/search", apiSearchRoute);
+app.use("/api/orders", apiOrderRoute);
 
 // app.use(authMiddleware.authMiddleware)
 
 app.use("/products", authMiddleware.authMiddleware, productRoute);
-app.use("/users", authMiddleware.authMiddleware, userRoute);
+app.use("/users", userRoute);
 app.use("/cart", authMiddleware.authMiddleware, cartRoute);
 app.use("", authRoute);
 
