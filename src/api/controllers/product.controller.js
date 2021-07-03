@@ -17,17 +17,24 @@ module.exports.index = async (req, res, next) => {
   if (sort == 600) sortBy = { price: -1 };
 
   const totalPage = Math.ceil(total / pageSize);
+  try {
+    const products = await Product.find({})
+      .skip(skip)
+      .limit(pageSize)
+      .sort(sortBy);
 
-  const products = await Product.find({})
-    .skip(skip)
-    .limit(pageSize)
-    .sort(sortBy);
-
-  res.json({ products, total, totalPage });
+    res.json({ products, total, totalPage });
+  } catch (err) {
+    res.status(400).send({ error: "Netword Error" });
+  }
 };
 
 module.exports.detail = async (req, res) => {
   const id = new ObjectId(req.params.id);
-  const product = await Product.findOne({ _id: id });
-  res.json(product);
+  try {
+    const product = await Product.findOne({ _id: id });
+    res.json(product);
+  } catch (err) {
+    res.status(400).send({ error: "Network Error" });
+  }
 };

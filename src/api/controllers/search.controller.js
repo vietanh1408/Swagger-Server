@@ -18,9 +18,13 @@ module.exports.search = async (req, res) => {
   if (sort == 500) sortBy = { price: 1 };
   if (sort == 600) sortBy = { price: -1 };
 
-  const matchProducts = await Product.find({ name: name })
-    .skip(skip)
-    .limit(pageSize)
-    .sort(sortBy);
-  res.json({ matchProducts, total, totalPage });
+  try {
+    const matchProducts = await Product.find({ name: name })
+      .skip(skip)
+      .limit(pageSize)
+      .sort(sortBy);
+    res.json({ matchProducts, total, totalPage });
+  } catch (err) {
+    res.status(400).send({ error: "Netword Error" });
+  }
 };
