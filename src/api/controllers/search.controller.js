@@ -8,7 +8,7 @@ module.exports.search = async (req, res) => {
   const skip = (pageIndex - 1) * pageSize;
 
   const name = new RegExp(".*" + keyword.toLowerCase().trim() + ".*");
-  const total = await Product.find({ name: name }).count();
+  const total = await Product.find({ name: name }).countDocuments();
   const totalPage = Math.ceil(total / pageSize);
 
   let sortBy;

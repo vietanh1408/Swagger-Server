@@ -2,7 +2,7 @@ const Product = require("./../../models/product.model");
 const ObjectId = require("mongodb").ObjectID;
 
 module.exports.index = async (req, res, next) => {
-  const total = await Product.find({}).count();
+  const total = await Product.find({}).countDocuments();
 
   const pageIndex = parseInt(req.query.pageIndex) || 1;
   const pageSize = parseInt(req.query.pageSize) || 12;
