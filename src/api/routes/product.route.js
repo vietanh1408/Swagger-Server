@@ -5,7 +5,7 @@ var multer = require("multer");
 var upload = multer({ dest: "public/uploads/" });
 
 route.get("/", controller.index);
-
+route.get("/slide", controller.productSlide);
 route.get("/:id", controller.detail);
 
 module.exports = route;

@@ -38,3 +38,12 @@ module.exports.detail = async (req, res) => {
     res.status(400).send({ error: "Network Error" });
   }
 };
+
+module.exports.productSlide = async (req, res) => {
+  try {
+    const products = await Product.find({ rating: 5 });
+    res.json(products);
+  } catch (err) {
+    res.status(400).send({ error: "Netword Error" });
+  }
+};
